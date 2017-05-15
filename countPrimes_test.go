@@ -2,6 +2,7 @@ package a1
 
 import (
     "testing"
+    "reflect"
     // "fmt"
 )
 
@@ -101,5 +102,39 @@ func TestFunctions(t *testing.T) {
         t.Error("minTime24: Expected 6, got", checkMinTime.second)
     }
 
+    // seqs := [2][2]int{}
+    // seqs[0][0] = 0
+    // seqs[1][0] = 1
+    if !reflect.DeepEqual(allBitSeqs(0), [][]int{}) {
+        t.Error("allBitSeqs: Expected empty array, got", allBitSeqs(0))
+    }
 
+    seq1 := allBitSeqs(1)
+    if seq1[0][0] != 0 {
+        t.Error("allBitSeqs: Expected 0, got", seq1[0][0])
+    }
+
+    if seq1[1][0] != 1 {
+        t.Error("allBitSeqs: Expected 1, got", seq1[1][0])
+    }
+
+    seq2 := allBitSeqs(2)
+    if seq2[0][0] != 0 {
+        t.Error("allBitSeqs: Expected 0, got", seq2[0][0])
+    }
+    if seq2[0][1] != 0 {
+        t.Error("allBitSeqs: Expected 0, got", seq2[0][1])
+    }
+    if seq2[1][0] != 0 {
+        t.Error("allBitSeqs: Expected 0, got", seq2[1][0])
+    }
+    if seq2[1][1] != 1 {
+        t.Error("allBitSeqs: Expected 1, got", seq2[1][1])
+    }
+    if seq2[2][0] != 1 {
+        t.Error("allBitSeqs: Expected 1, got", seq2[2][0])
+    }
+    if seq2[3][1] != 1 {
+        t.Error("allBitSeqs: Expected 1, got", seq2[3][1])
+    }
 }

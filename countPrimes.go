@@ -7,6 +7,8 @@ import (
     "strings"
     "reflect"
     "errors"
+    // "encoding/binary"
+    "strconv"
 )
 
 type Time24 struct {
@@ -138,9 +140,36 @@ func linearSearch(x interface{}, lst interface{}) (int){
     return -1
 }
 
-//TODO: Bit sequences
 func allBitSeqs(n int) [][]int {
 
-    // return [[][]]
+    if n <= 0 {
+        return [][]int{}
+    }
+
+    outerSlice := [][]int{}
+    outerSliceSize := int(math.Pow(2, float64(n)))
+
+    for i:=0; i<outerSliceSize; i++ {
+        innerSlice := []int{}
+
+        bins := strconv.FormatUint(uint64(i), 2)
+
+        for len(bins) < n {
+            bins = "0" + bins
+        }
+
+        for _,val := range bins {
+            val, _ := strconv.Atoi(string(val))
+            innerSlice = append(innerSlice, val)
+        }
+
+        outerSlice = append(outerSlice, innerSlice )
+    }
+
+    return outerSlice
 
 }
+
+
+
+
