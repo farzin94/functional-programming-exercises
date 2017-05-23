@@ -3,7 +3,6 @@ package a1
 import (
     "testing"
     "reflect"
-    // "fmt"
 )
 
 func TestFunctions(t *testing.T) {
@@ -102,9 +101,6 @@ func TestFunctions(t *testing.T) {
         t.Error("minTime24: Expected 6, got", checkMinTime.second)
     }
 
-    // seqs := [2][2]int{}
-    // seqs[0][0] = 0
-    // seqs[1][0] = 1
     if !reflect.DeepEqual(allBitSeqs(0), [][]int{}) {
         t.Error("allBitSeqs: Expected empty array, got", allBitSeqs(0))
     }

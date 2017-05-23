@@ -7,7 +7,6 @@ import (
     "strings"
     "reflect"
     "errors"
-    // "encoding/binary"
     "strconv"
 )
 
@@ -119,17 +118,20 @@ func countStrings(fileName string) (map[string]int) {
 func linearSearch(x interface{}, lst interface{}) (int){
 
     // TODO: panic if x type not equal to lst
+    if reflect.TypeOf(x) != reflect.TypeOf(lst).Elem() {
+        panic("Search term is not the same type as elements in list")
+    }
+
+    s:= reflect.ValueOf(lst)
 
     switch reflect.TypeOf(x).Kind() {
         case reflect.String:
-            s := reflect.ValueOf(lst)
             for i := 0; i < s.Len(); i++ {
                 if s.Index(i).String() == x {
                     return i
                 }
             }
         case reflect.Int:
-            s := reflect.ValueOf(lst)
             for i := 0; i < s.Len(); i++ {
                 if int(s.Index(i).Int()) == x {
                     return i
