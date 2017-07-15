@@ -1,17 +1,44 @@
-(load "a3.scm")
+(load "env2.scm")
 
-(my-last '(cat dog sheep))
+(define test-env
+    (extend-env 'a 1
+        (extend-env 'b 2
+            (extend-env 'c 3
+                (extend-env 'b 4
+                    (make-empty-env)))))
+)
 
-(snoc 5 '(1 2 3))
+(load "myeval.scm")
 
-(count-primes 10)
+(define env1
+    (extend-env 'x -1
+        (extend-env 'y 4
+            (extend-env 'x 1
+                (make-empty-env))))
+)
 
-(dec-bin 8)
+(define env2
+    (extend-env 'm -1
+        (extend-env 'a 4
+            (make-empty-env)))
+)
 
-;; (expt-1 2)
+(define env3
+    (extend-env 'q -1
+        (extend-env 'r 4
+            (make-empty-env)))
+)
 
-(all-bit-seqs 4)
-;; (zeros 3)
-;; 
-;; (zero-padder 4)
-;; (blah 3)
+
+(myeval '(2 ** q) env3)
+(myeval '(1 + a) env2)
+(myeval '(4 * (dec x)) env1)
+
+;; (apply-env env1 'x)
+;; (apply-env env2 'm)
+;; (load "simplify.scm")
+;; (simplify '(((a + b) - (a + b)) * ((1 + (0 * 0)) * (1 + 0))))
+;; (simplify '(z ** (b * (dec 1))))
+;; (simplify '(((a + 0) + (0 + 0)) + (0 + b)))
+
+
