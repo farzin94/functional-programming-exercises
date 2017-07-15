@@ -10,7 +10,7 @@
 )
 
 (define make-empty-env 
-	(empty-env)
+	(empty-env-closure)
 )
 
 (define extend-env-closure
